@@ -12,9 +12,10 @@ export default function SigninWithPassword() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   
+  // Initialize form state
   const [data, setData] = useState({
-    email: process.env.NEXT_PUBLIC_DEMO_USER_MAIL || "",
-    password: process.env.NEXT_PUBLIC_DEMO_USER_PASS || "",
+    email: "",
+    password: "",
     remember: false,
   });
 
@@ -44,7 +45,12 @@ export default function SigninWithPassword() {
       });
 
       if (result?.error) {
-        setError(result.error);
+        // Map error codes to user-friendly messages
+        if (result.error === "CredentialsSignin") {
+          setError("Invalid email or password. Please try again.");
+        } else {
+          setError(result.error);
+        }
         setLoading(false);
         return;
       }
@@ -73,7 +79,7 @@ export default function SigninWithPassword() {
         placeholder="Enter your email"
         name="email"
         handleChange={handleChange}
-        value=""
+        value={data.email}
         icon={<EmailIcon />}
         required
       />
@@ -85,7 +91,7 @@ export default function SigninWithPassword() {
         placeholder="Enter your password"
         name="password"
         handleChange={handleChange}
-        value=""
+        value={data.password}
         icon={<PasswordIcon />}
         required
       />

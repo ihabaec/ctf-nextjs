@@ -1,8 +1,8 @@
 // src/app/api/auth/[...nextauth]/route.ts
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -11,13 +11,13 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        // Add null check for credentials
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
+        
         if (
-          credentials.email === process.env.NEXT_PUBLIC_DEMO_USER_MAIL &&
-          credentials.password === process.env.NEXT_PUBLIC_DEMO_USER_PASS
+          credentials.email === process.env.DEMO_USER_MAIL &&
+          credentials.password === process.env.DEMO_USER_PASS
         ) {
           return {
             id: "user-id-123",
@@ -25,6 +25,8 @@ const handler = NextAuth({
             name: "Demo User",
           };
         }
+        
+        // Authentication failed
         return null;
       }
     })
@@ -50,6 +52,8 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

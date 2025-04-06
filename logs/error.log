@@ -1,0 +1,6 @@
+
+[2025-04-01 10:22:12] [error] [client 192.168.1.10] Database connection failed: Connection refused
+[2025-04-01 13:45:19] [error] [client 192.168.1.22] PHP Warning: file_get_contents(): Failed to open stream.
+[2025-04-01 14:12:33] [error] [client 192.168.1.15] Script '/var/www/html/admin/process.php' not found or unable to stat.
+[2025-04-01 15:30:22] [error] [client 192.168.1.18] Request exceeded the limit of 10 .
+[2025-04-01 16:05:41] [error] [client 192.168.1.22] Flag hint: Contact form submissions are logged in contact.log

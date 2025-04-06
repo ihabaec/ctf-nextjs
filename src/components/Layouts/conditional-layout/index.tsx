@@ -11,7 +11,8 @@ export function ConditionalLayout({ children }: PropsWithChildren) {
     pathname?.includes("/auth") || 
     pathname === "/signin" || 
     pathname === "/signup" || 
-    pathname === "/forgot-password";
+    pathname === "/forgot-password" ||
+    pathname === "/contact";
 
   return (
     <div className="flex min-h-screen">

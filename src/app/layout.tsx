@@ -1,4 +1,4 @@
-// layout.tsx (server component)
+
 import "@/css/satoshi.css";
 import "@/css/style.css";
 import "flatpickr/dist/flatpickr.min.css";
@@ -13,11 +13,11 @@ import { AuthProvider } from "@/components/Auth/auth-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | NextAdmin - Next.js Dashboard Kit",
-    default: "NextAdmin - Next.js Dashboard Kit",
+    template: "%s |lmao",
+    default: "hELLO fRIEND",
   },
   description:
-    "Next.js admin dashboard toolkit with 200+ templates, UI components, and integrations for fast dashboard development.",
+    "TEST TEST",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
