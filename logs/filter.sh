@@ -1,9 +1,7 @@
 #!/bin/bash
 
 APP_PATH="/home/ihab/ctf-nextjs"
-
 LOGS_DIR="${APP_PATH}/logs"
-
 FILTERED_LOGS_DIR="${APP_PATH}/logs/filtered"
 
 mkdir -p "${FILTERED_LOGS_DIR}"
@@ -31,7 +29,8 @@ find "${LOGS_DIR}" -type f -name "*.log" -not -path "${FILTERED_LOGS_DIR}/*" | w
         > "${FILTERED_LOGS_DIR}/browser_stats.log"
         
         grep -o "User-Agent: .*" "$log_file" | cut -d':' -f2- | while read -r agent; do
-            agent_type=$(eval "echo $agent" | grep -E "Firefox|Chrome|Safari|Edge" || echo "Unknown")
+            # Vulnerable approach: Using the agent directly as a grep pattern
+            agent_type=$(eval "echo $agent | grep -E 'Firefox|Chrome|Safari|Edge'" 2>/dev/null || echo "Unknown")
             echo "Detected browser: $agent_type" >> "${FILTERED_LOGS_DIR}/browser_stats.log"
         done
     fi
