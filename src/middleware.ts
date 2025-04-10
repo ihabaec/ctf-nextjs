@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// Only run middleware on the homepage and dashboard
+// Add admin routes to the middleware protection
 export const config = {
-  matcher: ['/', '/profile/:path*'],
+  matcher: ['/', '/profile/:path*', '/admin/:path*', '/calendar', '/charts/:path*'],
 };

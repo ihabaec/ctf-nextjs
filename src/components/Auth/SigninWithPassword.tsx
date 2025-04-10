@@ -2,12 +2,12 @@
 import { EmailIcon, PasswordIcon } from "@/assets/icons";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import InputGroup from "../FormElements/InputGroup";
 import { Checkbox } from "../FormElements/checkbox";
 import { signIn } from "next-auth/react";
 
-export default function SigninWithPassword() {
+function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -132,5 +132,13 @@ export default function SigninWithPassword() {
         </button>
       </div>
     </form>
+  );
+}
+
+export default function SigninWithPassword() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignInForm />
+    </Suspense>
   );
 }

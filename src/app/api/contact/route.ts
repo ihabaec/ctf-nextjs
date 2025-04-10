@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
-import { getSession } from "next-auth/react";
+import path from 'path';
 
 type ContactRequest = {
   name: string;
@@ -8,36 +8,48 @@ type ContactRequest = {
   message: string;
 }
 
-type ContactResponse = {
-  success: boolean;
-  error?: string;
-}
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ContactResponse>
-) {
-  const session = await getSession({ req });
-  if (!session) {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
-  }
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed', success: false });
-  }
-  
-  const { name, email, message } = req.body as ContactRequest;
-  const userAgent = req.headers['user-agent'] || 'Unknown';
-    const ipAddress = req.headers['x-forwarded-for'] || 
-                     req.socket.remoteAddress || 
-                     'Unknown';
-
-  const timestamp = new Date().toISOString();
-  const logEntry = `[${timestamp}]${name}:(${email}) using ${ipAddress}- User-Agent: ${userAgent}\n`;
-  
+export async function POST(request: NextRequest) {
   try {
-    await fs.appendFile('/var/logs/contact.log', logEntry);
-    res.status(200).json({ success: true });
+
+    const body = await request.json();
+    const { name, email, message } = body as ContactRequest;
+    
+    const errors: Record<string, string> = {};
+    if (!name || name.trim() === '') {
+      errors.name = 'Name is required';
+    }
+    
+    if (!email || email.trim() === '') {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.email = 'Valid email is required';
+    }
+    
+    if (!message || message.trim() === '') {
+      errors.message = 'Message is required';
+    }
+  
+    if (Object.keys(errors).length > 0) {
+      return NextResponse.json(
+        { success: false, errors },
+        { status: 400 }
+      );
+    }
+    
+    // Get user info
+    const userAgent = request.headers.get('user-agent') || 'Unknown';
+    const ipAddress = request.headers.get('x-forwarded-for') || 'Unknown';
+    const timestamp = new Date().toISOString();
+    const logEntry = `[${timestamp}] ${name}: (${email}) - User-Agent: ${userAgent}\n\n`;
+    
+    const logsDir = path.join(process.cwd(), 'logs');
+    await fs.appendFile(path.join(logsDir, 'contact.log'), logEntry);
+    return NextResponse.json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, error: 'Failed to log contact request' });
+    console.error('Error processing contact:', err);
+    return NextResponse.json(
+      { success: false, error: 'Failed to process contact request' },
+      { status: 500 }
+    );
   }
 }

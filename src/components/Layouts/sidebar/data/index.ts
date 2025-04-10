@@ -1,6 +1,26 @@
+// In your data.ts file:
 import * as Icons from "../icons";
 
-export const NAV_DATA = [
+// Define the types
+type SubMenuItem = {
+  title: string;
+  url: string;
+};
+
+type MenuItem = {
+  title: string;
+  icon: React.ComponentType<any>;
+  url?: string;
+  items: SubMenuItem[];
+};
+
+type NavSection = {
+  label: string;
+  items: MenuItem[];
+};
+
+// Then use those types for your data
+export const NAV_DATA: NavSection[] = [
   {
     label: "MAIN MENU",
     items: [
@@ -25,6 +45,18 @@ export const NAV_DATA = [
         title: "Charts",
         url: "/charts/basic-chart",
         icon: Icons.PieChart,
+        items: []
+      },
+      {
+        title: "Logs",
+        url: "/admin/logs",
+        icon: Icons.HomeIcon,
+        items: []
+      },
+      {
+        title: "Contact",
+        url: "/contact",
+        icon: Icons.ChevronUp,
         items: []
       },
     ],

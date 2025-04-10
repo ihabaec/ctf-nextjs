@@ -1,6 +1,4 @@
-// File: app/api/logs/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from "next-auth";
 import { promises as fs } from 'fs';
 import path from 'path';
 import { existsSync } from 'fs';
@@ -9,41 +7,25 @@ export async function OPTIONS(request: NextRequest) {
   return new NextResponse(null, {
     status: 200,
     headers: {
-      'Allow': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Allow': 'GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     },
   });
 }
 
-// Handle POST requests (same as GET for this example)
-export async function POST(request: NextRequest) {
-  console.log("POST request received");
-  return handleLogRequest(request);
-}
-
-// Handle GET requests
 export async function GET(request: NextRequest) {
   console.log("GET request received");
   return handleLogRequest(request);
 }
 
-// Shared logic for both GET and POST
 async function handleLogRequest(request: NextRequest) {
   // Use searchParams instead of query in App Router
   const url = new URL(request.url);
   const file = url.searchParams.get('file');
   
   console.log("API route called with file param:", file);
-
-    const session = await getServerSession();
-        if (!session) {
-            return NextResponse.json(
-            { success: false, error: "Unauthorized" },
-            { status: 403 }
-         );
-     }
 
   if (!file) {
     return NextResponse.json(
@@ -52,11 +34,10 @@ async function handleLogRequest(request: NextRequest) {
     );
   }
 
-  // Use a relative path to logs directory
-  const logsDir = path.join(process.cwd(), 'logs');
+  const logsDir = path.join(process.cwd(), 'logs/filtered');
   
   try {
-    // Check if the directory exists
+    // Check if logs directory exists
     const dirExists = existsSync(logsDir);
     
     if (!dirExists) {
@@ -64,19 +45,42 @@ async function handleLogRequest(request: NextRequest) {
       return NextResponse.json(
         { 
           success: false, 
-          error: `Logs directory '${logsDir}' does not exist`,
-          debug: { 
-            requestedFile: file,
-            attemptedPath: path.join(logsDir, file),
-            cwd: process.cwd()
-          }
+          error: `Logs directory does not exist`,
         },
         { status: 500 }
       );
     }
 
-    // Vulnerable: No proper path validation
-    const logPath = path.join(logsDir, file);
+    // SECURITY IMPROVEMENTS:
+    
+    // 1. Sanitize the filename - only allow alphanumeric characters, hyphens, and .log extension
+    const filenameRegex = /^[a-zA-Z0-9-_]+\.log$/;
+    if (!filenameRegex.test(file)) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "Invalid file format. Only log files with alphanumeric names are allowed."
+        },
+        { status: 400 }
+      );
+    }
+    
+    // 2. Resolve the absolute paths to ensure no directory traversal
+    const logPath = path.resolve(logsDir, file);
+    const normalizedLogsDir = path.resolve(logsDir);
+    
+    // 3. Verify the resolved path starts with the logs directory path (prevent path traversal)
+    if (!logPath.startsWith(normalizedLogsDir)) {
+      console.error('Attempted directory traversal:', {
+        requestedFile: file,
+        resolvedPath: logPath,
+        logsDir: normalizedLogsDir
+      });
+      return NextResponse.json(
+        { success: false, error: "Access denied" },
+        { status: 403 }
+      );
+    }
     
     try {
       const data = await fs.readFile(logPath, 'utf8');
@@ -97,12 +101,7 @@ async function handleLogRequest(request: NextRequest) {
       return NextResponse.json(
         { 
           success: false, 
-          error: `File '${file}' not found or couldn't be read`,
-          debug: {
-            requestedFile: file,
-            attemptedPath: logPath,
-            error: (err as Error).message
-          }
+          error: `File not found or couldn't be read`,
         },
         { 
           status: 404,
@@ -119,10 +118,6 @@ async function handleLogRequest(request: NextRequest) {
       { 
         success: false, 
         error: "An unexpected error occurred",
-        debug: {
-          error: (err as Error).message,
-          stack: (err as Error).stack
-        }
       },
       { 
         status: 500,
