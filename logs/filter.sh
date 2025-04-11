@@ -4,7 +4,6 @@ LOGS_DIR="${APP_PATH}/logs"
 FILTERED_LOGS_DIR="${APP_PATH}/logs/filtered"
 mkdir -p "${FILTERED_LOGS_DIR}"
 
-# Regular sanitize function for most content
 sanitize_input() {
     local input="$1"
     sanitized=$(echo "$input" | sed 's/`//g' | sed 's/;//g' | sed 's/|//g' | sed 's/&//g' | sed 's/$(//g' | sed 's/)//g')
@@ -38,7 +37,6 @@ find "${LOGS_DIR}" -type f -name "*.log" -not -path "${FILTERED_LOGS_DIR}/*" | w
         cat "$TMP_FILE" > "${filtered_log_path}"
         rm -f "$TMP_FILE"
     else
-        # For other log files, apply regular sanitization
         TMP_FILE=$(mktemp)
         while IFS= read -r line; do
             sanitized_line=$(sanitize_input "$line")
