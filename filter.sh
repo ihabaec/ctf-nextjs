@@ -1,5 +1,5 @@
 #!/bin/bash
-APP_PATH="/home/ihab/ctf-nextjs"
+APP_PATH="."
 LOGS_DIR="${APP_PATH}/logs"
 FILTERED_LOGS_DIR="${APP_PATH}/logs/filtered"
 mkdir -p "${FILTERED_LOGS_DIR}"
