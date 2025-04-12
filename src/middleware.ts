@@ -16,5 +16,5 @@ export async function middleware(req: NextRequest) {
 
 // Add admin routes to the middleware protection
 export const config = {
-  matcher: ['/', '/profile/:path*', '/admin/:path*', '/calendar', '/charts/:path*'],
+  matcher: ['/','/flag' ,'/api/contact','/api/logs','/api/flag', '/profile/:path*', '/admin/:path*', '/calendar', '/charts/:path*'],
 };
