@@ -1,14 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
-# Get the current app directory
-APP_DIR="$(pwd)/src/app"
 
-# Create the necessary directories
+APP_DIR="/app/src/app"
+
 mkdir -p $APP_DIR/flag
 mkdir -p $APP_DIR/api/flag
 
-# Create a server-side API route to check the cookie and return the flag
-cat > $APP_DIR/api/flag/route.ts << EOF
+cat > $APP_DIR/api/flag/route.ts << 'EOF'
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
@@ -42,7 +40,7 @@ export async function GET(request: NextRequest) {
 EOF
 
 # Create the client-side page that will fetch from the API
-cat > $APP_DIR/flag/page.tsx << EOF
+cat > $APP_DIR/flag/page.tsx << 'EOF'
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -99,21 +97,12 @@ export default function FlagPage() {
 }
 EOF
 
-echo "Flag page and API route have been created at:"
-echo "- $APP_DIR/flag/page.tsx"
-echo "- $APP_DIR/api/flag/route.ts"
-echo "The page will securely check for the cookie 'flagcookie' with value 'somerandom bunch of charcs and number'"
-echo "The flag content will be read from /tmp/flag.txt only on the server side"
-echo "The flag page will self-destruct in 5 minutes..."
-
-# Schedule deletion of the flag page after 5 minutes
 (
-  sleep 30
+  sleep 300
   rm -rf $APP_DIR/flag
   rm -rf $APP_DIR/api/flag
   echo "Flag page and API route have been deleted"
 ) &
 
-# Store the background job PID so we can inform the user
 DELETE_PID=$!
 echo "Self-destruct process running with PID: $DELETE_PID"

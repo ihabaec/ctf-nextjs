@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
 }
 
 async function handleLogRequest(request: NextRequest) {
-  // Use searchParams instead of query in App Router
   const url = new URL(request.url);
   const file = url.searchParams.get('file');
   
@@ -50,10 +49,6 @@ async function handleLogRequest(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    // SECURITY IMPROVEMENTS:
-    
-    // 1. Sanitize the filename - only allow alphanumeric characters, hyphens, and .log extension
     const filenameRegex = /^[a-zA-Z0-9-_]+\.log$/;
     if (!filenameRegex.test(file)) {
       return NextResponse.json(
@@ -65,11 +60,9 @@ async function handleLogRequest(request: NextRequest) {
       );
     }
     
-    // 2. Resolve the absolute paths to ensure no directory traversal
     const logPath = path.resolve(logsDir, file);
     const normalizedLogsDir = path.resolve(logsDir);
-    
-    // 3. Verify the resolved path starts with the logs directory path (prevent path traversal)
+
     if (!logPath.startsWith(normalizedLogsDir)) {
       console.error('Attempted directory traversal:', {
         requestedFile: file,
@@ -85,7 +78,6 @@ async function handleLogRequest(request: NextRequest) {
     try {
       const data = await fs.readFile(logPath, 'utf8');
       
-      // Return JSON response
       return NextResponse.json({ 
         success: true, 
         content: data 
