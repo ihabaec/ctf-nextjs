@@ -54,7 +54,6 @@ export default function FlagPage() {
     const checkFlag = async () => {
       try {
         setLoading(true);
-        // This calls our API route which checks the cookie server-side
         const response = await fetch('/api/flag');
         
         if (response.ok) {
@@ -62,11 +61,9 @@ export default function FlagPage() {
           if (data.success) {
             setFlag(data.flag);
           } else {
-            // API returned an error
             setError(data.error || 'Unknown error');
           }
         } else {
-          // Handle HTTP errors
           setError('Access denied');
         }
       } catch (err) {
@@ -104,5 +101,4 @@ EOF
   echo "Flag page and API route have been deleted"
 ) &
 
-DELETE_PID=$!
-echo "Self-destruct process running with PID: $DELETE_PID"
+echo "SUCCESS"

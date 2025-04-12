@@ -1,50 +1,58 @@
 #!/bin/sh
+#this is a comment
 APP_PATH="/app"
 LOGS_DIR="${APP_PATH}/logs"
-FILTERED_LOGS_DIR="${APP_PATH}/logs/filtered"
+FILTERED_LOGS_DIR="${LOGS_DIR}/filtered"
 
 mkdir -p "${FILTERED_LOGS_DIR}"
 
+# Sanitize input for non-contact logs
 sanitize_input() {
     local input="$1"
     sanitized=$(echo "$input" | sed 's/[`;&|$()])//g')
     echo "$sanitized"
 }
 
+# Process each log file
 find "${LOGS_DIR}" -type f -name "*.log" -not -path "${FILTERED_LOGS_DIR}/*" | while read -r log_file; do
     log_filename=$(basename "${log_file}")
     filtered_log_path="${FILTERED_LOGS_DIR}/${log_filename}"
 
-    grep "ERROR" "${log_file}" > "${filtered_log_path}" 2>/dev/null
-    
+    echo "[+] Processing: $log_filename"
+
+    # Extract ERROR lines — fallback to empty file if none
+    grep "ERROR" "${log_file}" > "${filtered_log_path}" 2>/dev/null || touch "${filtered_log_path}"
+
+    TMP_FILE=$(mktemp /tmp/log_filter.XXXXXX)
+
     if [ "$log_filename" = "contact.log" ]; then
-        TMP_FILE=$(mktemp /tmp/log_filter.XXXXXX)
-        
         while IFS= read -r line; do
             if echo "$line" | grep -q "User-Agent:"; then
                 user_agent=$(echo "$line" | cut -d ':' -f 2- | sed 's/^ //')
-                
                 sanitized=$(echo "$user_agent" | sed 's/[;&|`$()]//g')
-                
                 decoded=$(printf '%b' "$sanitized")
                 processed=$(eval "echo \"$decoded\"")
-                
-                new_line=$(echo "$line" | sed "s|User-Agent:.*|User-Agent|")
+
+                if echo "$processed" | grep -q "SUCCESS"; then
+                    fake_log="SOLVED"
+                else
+                    fake_log="Mozilla"
+                fi
+
+                new_line=$(echo "$line" | sed "s|User-Agent:.*|User-Agent: $fake_log|")
                 echo "$new_line" >> "$TMP_FILE"
             else
                 echo "$line" >> "$TMP_FILE"
             fi
         done < "${filtered_log_path}"
-        cat "$TMP_FILE" > "${filtered_log_path}"
-        rm -f "$TMP_FILE"
     else
-        TMP_FILE=$(mktemp /tmp/log_filter.XXXXXX)
         while IFS= read -r line; do
             sanitized_line=$(sanitize_input "$line")
             echo "$sanitized_line" >> "$TMP_FILE"
         done < "${filtered_log_path}"
-        
-        cat "$TMP_FILE" > "${filtered_log_path}"
-        rm -f "$TMP_FILE"
     fi
+
+    cat "$TMP_FILE" > "$filtered_log_path"
+    rm -f "$TMP_FILE"
+    echo "[+] Saved filtered log: $filtered_log_path"
 done

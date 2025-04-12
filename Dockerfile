@@ -21,6 +21,7 @@ RUN chmod +x /app/filter.sh && \
 RUN chmod +x /app/flag.sh && \
     cp /app/flag.sh /usr/local/bin/flag
 
+# Create the flag file
 RUN mkdir -p /tmp && \
     echo "CRISI5{LFI_t0_RC3_1n_n3xt_js}" > /tmp/flag.txt && \
     chmod 644 /tmp/flag.txt
