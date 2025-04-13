@@ -1,8 +1,11 @@
 #!/bin/bash
 
-{
-  echo "[$(date)] Solved"
-} >> /var/log/.ctf_solves.log
+FLAG_FILE="/tmp/.flag_activated"
 
+echo "1" > $FLAG_FILE
 
-exit 0
+sleep 120
+
+echo "0" > $FLAG_FILE
+
+echo "Script completed"

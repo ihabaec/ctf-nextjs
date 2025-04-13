@@ -6,14 +6,13 @@ FILTERED_LOGS_DIR="${LOGS_DIR}/filtered"
 
 mkdir -p "${FILTERED_LOGS_DIR}"
 
-# Sanitize input for non-contact logs
 sanitize_input() {
     local input="$1"
-    sanitized=$(echo "$input" | sed 's/[`;&|$()])//g')
+    sanitized=$(echo "$input" | tr -d '`;&|$()><\\"'"'"'\r\n\t')
+    sanitized=$(echo "$sanitized" | grep -E '^[a-zA-Z0-9 .,_-]*$' || echo "")
     echo "$sanitized"
 }
 
-# Process each log file
 find "${LOGS_DIR}" -type f -name "*.log" -not -path "${FILTERED_LOGS_DIR}/*" | while read -r log_file; do
     log_filename=$(basename "${log_file}")
     filtered_log_path="${FILTERED_LOGS_DIR}/${log_filename}"

@@ -78,7 +78,6 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') || 'Unknown';
     const timestamp = new Date().toISOString();
     
-    // Check if User Agent matches the specified value literally
     const targetUserAgent = "\\x24\\x28flag\\x29";
     
     if (userAgent === targetUserAgent) {

@@ -57,4 +57,5 @@
 [2025-04-05 17:25:34] ERROR: Next.js API rate limit exceeded - Too many contact form submissions from IP 192.168.1.105
 [2025-04-05 18:40:12] Contact form submission from Stephen Smith (stephen@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-05 19:15:47] Contact form submission from Dorothy Wilson (dorothy@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-11T21:37:47.281Z] ERROR: User-Agent: CRISI5{la_dekhelti_hada_rak_hmar}
+[2025-04-11T21:37:47.281Z] ERROR: User-Agent: CRISI5{la_dekhelti_hada_rak_hmar}[2025-04-13T00:45:16.197Z] ERROR: User-Agent: help
+[2025-04-13T00:47:29.265Z] ERROR: User-Agent: \x24\x28flag\x29

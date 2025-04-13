@@ -1,18 +1,22 @@
+// app/api/flag/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
-import path from 'path';
+import { isFlagEnabled } from '@/utils/flagChecker';
 
 export async function GET(request: NextRequest) {
-  // Get cookies from the request
+  if (!isFlagEnabled()) {
+    return NextResponse.json(
+      { success: false, error: 'Not found' },
+      { status: 404 }
+    );
+  }
+  
   const flagCookie = request.cookies.get('flagcookie')?.value;
   
-  // Check if the cookie exists and has the correct value
   if (flagCookie === 'hoih1io4ho2i14') {
     try {
-      // Read the flag from the file - this happens server-side only
       const flag = fs.readFileSync('/tmp/flag.txt', 'utf8');
       
-      // Return the flag to the client
       return NextResponse.json({ success: true, flag });
     } catch (error) {
       return NextResponse.json(
@@ -22,7 +26,6 @@ export async function GET(request: NextRequest) {
     }
   }
   
-  // If cookie isn't correct, return unauthorized
   return NextResponse.json(
     { success: false, error: 'Unauthorized' },
     { status: 401 }

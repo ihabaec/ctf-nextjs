@@ -28,8 +28,6 @@ const nextConfig = {
     minimumCacheTTL: 60,
     formats: ['image/webp'],
   },
-  // Performance optimizations
-  swcMinify: true,
   poweredByHeader: false,
   compress: true,
   
@@ -39,7 +37,6 @@ const nextConfig = {
   // Disable telemetry
   experimental: {
     optimizeCss: true,
-    // Minimize JavaScript in production builds
     optimizePackageImports: ['react-icons', 'date-fns', 'lodash']
   },
   
@@ -51,8 +48,6 @@ const nextConfig = {
     pagesBufferLength: 2,
   },
   
-  // Output as a standalone build
-  output: 'standalone'
 };
 
 export default nextConfig;
