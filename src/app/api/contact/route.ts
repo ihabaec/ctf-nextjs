@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       
       // Create response with cookie for the special User Agent
       const response = new NextResponse(
-        JSON.stringify({ success: false, error: 'Failed Succesfully, wlkin endk zhar payload s7i7a db filter.sh cronjob hay trunna o hay texecuta la commande dialk every2mins and you can check /flag', flag: true }),
+        JSON.stringify({ success: false, error: 'Failed Succesfully, wlkin endk zhar payload s7i7a db filter.sh cronjob hay trunna o hay texecuta la commande dialk every2mins and you can check /i7tiramati', flag: true }),
         { 
           status: 500,
           headers: {
