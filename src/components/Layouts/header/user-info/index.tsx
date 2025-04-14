@@ -20,8 +20,8 @@ export function UserInfo() {
   const router = useRouter();
 
   const USER = {
-    name: "John Smith",
-    email: "johnson@nextadmin.com",
+    name: "Hmida l3yan",
+    email: "dihafkerk@hmidal3yan.com",
     img: "/images/user/user-03.png",
   };
 

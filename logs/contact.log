@@ -1,61 +1,18 @@
-[2025-04-01 10:26:33] Contact form submission from John Doe (john@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-01 11:42:15] Contact form submission from Jane Smith (jane@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-01 13:12:55] Contact form submission from Alice Johnson (alice@example.com) - User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
-[2025-04-01 14:30:22] Contact form submission from Bob Brown (bob@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-01 15:45:18] Contact form submission from Hacker (hack@example.com) - User-Agent: ls//
+[2025-04-01 10:26:33] Contact form submission from John Doe (john@example.com)
 [2025-04-01 16:23:47] ERROR: Failed to send confirmation email to customer@example.com - NextJS API route /api/email/send returned status 500
-[2025-04-01 17:10:05] Contact form submission from Emma Wilson (emma@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-01 18:45:33] Contact form submission from Michael Davis (michael@example.com) - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
 [2025-04-01 19:27:12] ERROR: Next.js server-side rendering failed for /contact - Props serialization error
-[2025-04-01 20:14:38] Contact form submission from Sarah Miller (sarah@example.com) - User-Agent: Mozilla/5.0 (iPad; CPU OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
-[2025-04-02 08:11:55] Contact form submission from David Wilson (david@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-02 09:30:26] ERROR: MongoDB connection timeout in /api/contact/submit - NextJS API route handler failed
-[2025-04-02 10:45:18] Contact form submission from Jennifer Taylor (jennifer@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-02 11:55:37] Contact form submission from James Anderson (james@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Edge/125.0.2535.43
 [2025-04-02 12:10:22] ERROR: Failed to parse form data from /api/contact - NextJS middleware validation failed
-[2025-04-02 13:27:45] Contact form submission from Jessica Williams (jessica@example.com) - User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
 [2025-04-02 14:40:06] ERROR: Redis cache miss for contact form template - NextJS getStaticProps regeneration triggered
-[2025-04-02 15:15:33] Contact form submission from William Brown (william@example.com) - User-Agent: Mozilla/5.0 (Linux; Android 14; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6327.140 Mobile Safari/537.36
-[2025-04-02 16:38:54] Contact form submission from Elizabeth Johnson (elizabeth@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-02 17:42:12] ERROR: Vercel serverless function timeout - /api/contact/save execution exceeded 10s
-[2025-04-02 18:05:27] Contact form submission from Richard Davis (richard@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-02 19:23:15] Contact form submission from Susan Martin (susan@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-02 20:11:49] ERROR: NextJS Image Optimization API failed - Unable to process attachment from contact form
-[2025-04-03 09:15:27] Contact form submission from Thomas Smith (thomas@example.com) - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
-[2025-04-03 10:33:42] Contact form submission from Margaret Wilson (margaret@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-03 11:27:18] ERROR: NextJS API route validation error - Invalid CSRF token in contact submission
-[2025-04-03 12:40:55] Contact form submission from Christopher Johnson (christopher@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-03 13:55:32] Contact form submission from Patricia Brown (patricia@example.com) - User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
 [2025-04-03 14:18:23] ERROR: Next-Auth session validation failed - Rate limit exceeded for contact form
-[2025-04-03 15:42:11] Contact form submission from Daniel Miller (daniel@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-03 16:30:47] Contact form submission from Linda Davis (linda@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
 [2025-04-03 17:15:29] ERROR: NextJS getServerSideProps failed - Unable to fetch contact form configuration
-[2025-04-03 18:27:36] Contact form submission from Matthew Taylor (matthew@example.com) - User-Agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6327.140 Mobile Safari/537.36
-[2025-04-03 19:10:22] Contact form submission from Laura Anderson (laura@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-03 20:05:47] ERROR: Next.js rewrite rule failure - Contact form submission redirected to incorrect API endpoint
-[2025-04-04 08:35:16] Contact form submission from Robert Wilson (robert@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-04 09:47:23] Contact form submission from Sandra Thomas (sandra@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-04 10:22:41] ERROR: Prisma database query failed - Contact form data insertion error
-[2025-04-04 11:30:19] Contact form submission from Joseph Martin (joseph@example.com) - User-Agent: Mozilla/5.0 (iPad; CPU OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
-[2025-04-04 12:45:37] Contact form submission from Betty Johnson (betty@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-04 13:15:22] ERROR: NextJS ISR revalidation failed - Contact page stale cache not updated
-[2025-04-04 14:33:48] Contact form submission from Charles Brown (charles@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-04 15:50:11] Contact form submission from Helen Smith (helen@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 [2025-04-04 16:25:44] ERROR: SWR mutation error - Contact form optimistic update failed client-side
-[2025-04-04 17:40:32] Contact form submission from Frank Wilson (frank@example.com) - User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
-[2025-04-04 18:15:29] Contact form submission from Carol Davis (carol@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-04 19:33:47] ERROR: NextJS middleware execution failed - Contact form spam detection service unavailable
-[2025-04-04 20:10:18] Contact form submission from potential-attacker (test';DROP TABLE users;--@evil.com) - User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-[2025-04-05 09:25:43] Contact form submission from George Miller (george@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-05 10:42:15] Contact form submission from Mary Taylor (mary@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-05 11:17:38] ERROR: Next.js environment variable missing - CONTACT_FORM_RECIPIENT not defined
-[2025-04-05 12:30:22] Contact form submission from Edward Johnson (edward@example.com) - User-Agent: Mozilla/5.0 (Linux; Android 14; SM-S908B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6327.140 Mobile Safari/537.36
-[2025-04-05 13:45:36] Contact form submission from Nancy Anderson (nancy@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-05 14:20:15] ERROR: NextJS file-system cache corruption - Contact form template not found
-[2025-04-05 15:37:43] Contact form submission from Donald Brown (donald@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-05 16:52:19] Contact form submission from Ruth Martin (ruth@example.com) - User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1
-[2025-04-05 17:25:34] ERROR: Next.js API rate limit exceeded - Too many contact form submissions from IP 192.168.1.105
-[2025-04-05 18:40:12] Contact form submission from Stephen Smith (stephen@example.com) - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
-[2025-04-05 19:15:47] Contact form submission from Dorothy Wilson (dorothy@example.com) - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
-[2025-04-11T21:37:47.281Z] ERROR: User-Agent: CRISI5{la_dekhelti_hada_rak_hmar}[2025-04-13T00:45:16.197Z] ERROR: User-Agent: help
-[2025-04-13T00:47:29.265Z] ERROR: User-Agent: \x24\x28flag\x29
+[2025-04-04 19:33:47] ERROR: NextJS middleware execution failed - Contact form spam detection service
+[2025-04-11T21:37:47.281Z] ERROR: User-Agent: CRISI5{la_dekhelti_hada_rak_hmar}
+[2025-04-13T00:45:16.197Z] ERROR: User-Agent: help
