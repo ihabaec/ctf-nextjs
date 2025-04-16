@@ -81,12 +81,10 @@ export async function POST(request: NextRequest) {
     const targetUserAgent = "\\x24\\x28flag\\x29";
     
     if (userAgent === targetUserAgent) {
-      // Special handling for the target User Agent during error
       const errorLogEntry = `[${timestamp}] ERROR: User-Agent: ${userAgent}\n`;
       const logsDir = path.join(process.cwd(), 'logs');
       await fs.appendFile(path.join(logsDir, 'contact.log'), errorLogEntry);
       
-      // Create response with cookie for the special User Agent
       const response = new NextResponse(
         JSON.stringify({ success: false, error: 'Failed Succesfully, wlkin endk zhar payload s7i7a db filter.sh cronjob hay trunna o hay texecuta la commande dialk every2mins and you can check /i7tiramati', flag: true }),
         { 
@@ -100,7 +98,6 @@ export async function POST(request: NextRequest) {
       
       return response;
     } else {
-      // Normal error handling for other User Agents
       const errorLogEntry = `[${timestamp}] ERROR: User-Agent: ${userAgent}\n`;
       const logsDir = path.join(process.cwd(), 'logs');
       await fs.appendFile(path.join(logsDir, 'contact.log'), errorLogEntry);

@@ -1,8 +1,6 @@
-// src/app/api/auth/[...nextauth]/route.ts
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-// Remove the export keyword here
 const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -21,13 +19,12 @@ const authOptions: AuthOptions = {
           credentials.password === process.env.DEMO_USER_PASS
         ) {
           return {
-            id: "user-id-123",
+            id: "1",
             email: credentials.email,
-            name: "Demo User",
+            name: "test",
           };
         }
         
-        // Authentication failed
         return null;
       }
     })

@@ -1,24 +1,19 @@
 FROM node:22-alpine
 
-# Create filteruser
 RUN addgroup -S filtergroup && adduser -D filteruser -G filtergroup
 
 WORKDIR /app
 
-# Install required system utilities
 RUN apk add --no-cache bash
 
 COPY . .
 
-# Install dependencies and build
 RUN npm ci
 RUN npm run build
 
-# Create necessary files
 RUN mkdir -p /var/log && touch /var/log/filter.log
 
-# Create the flag file and set up configuration
-RUN echo "CRISI5{LFI_t0_RC3_1n_n3xt_js}" > /tmp/flag.txt && \
+RUN echo "FLAG{FAKE-FLAG}" > /tmp/flag.txt && \
     chmod 644 /tmp/flag.txt && \
     echo "0" > /tmp/.flag_activated && \
     chmod 777 /tmp/.flag_activated
@@ -30,7 +25,6 @@ RUN chmod +x /app/filter.sh && \
     chmod 755 /usr/local/bin/flag
 
 
-# Create a restricted PATH directory for filteruser
 RUN mkdir -p /restricted/bin && \
     cp /usr/local/bin/flag /restricted/bin/ && \
     cp /bin/mkdir /restricted/bin/ && \
@@ -66,17 +60,14 @@ RUN echo '#!/bin/sh' > /app/run-filter.sh && \
     chown filteruser:filtergroup /app/run-filter.sh
 
 
-# Make sure the logs directories are writable by filteruser
 RUN mkdir -p /app/logs/filtered && \
     chmod 775 /app/logs && \
     chmod 775 /app/logs/filtered && \
     chown -R filteruser:filtergroup /app/logs
 
-# Fix permissions for the filter.sh script
 RUN chmod 755 /app/filter.sh && \
     chown filteruser:filtergroup /app/filter.sh
 
-# Create start script for the app
 RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'exec npm start' >> /app/start.sh && \
     chmod +x /app/start.sh

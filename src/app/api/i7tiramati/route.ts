@@ -4,7 +4,6 @@ import fs from 'fs';
 import { isFlagEnabled } from '@/utils/flagChecker';
 
 export async function GET(request: NextRequest) {
-  // Need to await the async function
   const flagEnabled = await isFlagEnabled();
   
   if (!flagEnabled) {
