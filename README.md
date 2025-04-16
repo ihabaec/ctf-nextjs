@@ -122,20 +122,3 @@ x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middle
 </div>
 
 While our challenge focuses on command injection rather than middleware bypass, both exploits demonstrate how HTTP headers can be weaponized to compromise application security.
-
-## <span style="color:#a855f7">DEFENSE STRATEGIES</span>
-
-<div style="background-color:#f8fafc; padding:15px; border-radius:5px; border:1px solid #e2e8f0">
-To prevent this type of vulnerability:
-<ul>
-  <li><span style="color:#ef4444">✕</span> Never use `eval` with untrusted input</li>
-  <li><span style="color:#10b981">✓</span> Implement strict input validation for all user-controllable fields</li>
-  <li><span style="color:#10b981">✓</span> Use proper shell escaping when processing log entries</li>
-  <li><span style="color:#10b981">✓</span> Run processing scripts with minimal privileges</li>
-  <li><span style="color:#10b981">✓</span> Implement proper authentication for sensitive endpoints</li>
-</ul>
-</div>
-
-<div align="center" style="margin-top:40px; padding:20px; background-color:#10b981; color:white; border-radius:5px;">
-  <h2>Challenge completed! Add this to your collection of pwned systems.</h2>
-</div>
